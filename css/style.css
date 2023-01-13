@@ -7,12 +7,12 @@
 }
 
 :root {
-  --text-color: #00aa00;
+  --text-color: #fbf1c7;
 }
 
 body {
   font-family: 'Roboto Mono', sans-serif;
-  background-color: #333;
+  background-color: #282828;
   color: #ccc;
   font-size: 18px;
   line-height: 1.6;
@@ -21,7 +21,6 @@ body {
 h1 {
   color: var(--text-color);
   font-size: 50px;
-  letter-spacing: -5px;
   margin-bottom: 20px;
 }
 
@@ -61,8 +60,14 @@ nav ul li {
   cursor: pointer;
 }
 
+.main {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
 .container {
-  max-width: 600px;
+  width: 600px;
   margin: auto;
   height: 70vh;
   display: flex;
@@ -71,8 +76,82 @@ nav ul li {
   align-items: center;
 }
 
+.element {
+  width: 400px;
+}
+
+/* Mac OS style window */
+
+.winbox {
+  border-radius: 6px;
+}
+
 .wb-body {
-  background: #111;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+.wb-header {
+  align-content: center;
+  display: flex;
+}
+
+.wb-title {
+  display: flex;
+  font-family: inherit;
+  font-size: inherit;
+  justify-content: center;
+  width: 100%;
+}
+
+.wb-icon {
+  align-items: center;
+  display: flex;
+}
+
+.wb-max:hover, .wb-min:hover, .wb-close:hover {
+  opacity: 0.85;
+}
+
+.wb-max, .wb-min, .wb-close {
+  height: 14px;
+  margin-inline: .3rem;
+  transition: 0.2s;
+  width: 14px;
+}
+
+.wb-close {
+  background: #ff5c5c;
+  border: 1px solid #e33e41;
+  border-radius: 50%;
+  order: 1;
+  margin-left: 10px;
+
+}
+
+.wb-max {
+  background: #ffbd4c;
+  border: 1px solid #e09e3e;
+  border-radius: 50%;
+  order: 2;
+  
+}
+
+.wb-min {
+  background: #00ca56;
+  border: 1px solid #14ae46;
+  border-radius: 50%;
+  order: 3;
+}
+
+
+
+.wb-full {
+  display: none;
+}
+
+.wb-body {
+  background: #32302f;
   padding: 20px;
 }
 
