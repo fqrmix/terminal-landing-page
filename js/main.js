@@ -6,47 +6,64 @@ const contactContent = document.querySelector('#contact-content')
 let getWindowOptions = () => {
   let options = {};
 
-  options.aboutWidth = '750px';
-  options.aboutHeight = '385px';
-  options.contactWidth = '750px';
-  options.contactHeight = '250px';
+  options.aboutWidth = window.innerWidth / 2;
+  options.aboutHeight = window.innerHeight / 2;
+  options.contactWidth = window.innerWidth / 2;
+  options.contactHeight = window.innerHeight / 3;
 
   options.top = 10;
   options.right = 10;
-  options.bottom = 50;
+  options.bottom = 10;
   options.left = 10;
 
-  options.x = window.innerWidth - 750 - options.right;
-  options.y = window.innerHeight - 385;
+  options.aboutX = window.innerWidth - options.aboutWidth - options.right * 5;
+  options.aboutY = options.top * 5;
+
+  options.contactX = options.aboutX;
+  options.contactY = options.aboutY + options.aboutHeight + options.top * 5;
 
   options.modal = (window.innerWidth <= 767);
-  console.log(options.modal)
   if (options.modal) {
     options.top = 0;
     options.right = 0;
     options.bottom = 0;
     options.left = 0;
-    options.x = "center";
-    options.y = "center";
-    options.aboutWidth = (window.innerWidth - 30) + 'px';
-    options.aboutHeight = (window.innerHeight - 30) + 'px';
-    options.contactWidth = (window.innerWidth - 30) + 'px';
-    options.contactHeight = (window.innerHeight - 30) + 'px';
+    options.aboutX = "center";
+    options.aboutY = "center";
+    options.contactX = "center";
+    options.contactY = "center";
+    options.aboutWidth = window.innerWidth - 30;
+    options.aboutHeight = window.innerHeight - 30;
+    options.contactWidth = window.innerWidth - 30;
+    options.contactHeight = window.innerHeight - 30;
   }
   return options
 };
 
 let windowOptions = getWindowOptions();
 
-console.log(getWindowOptions('about'));
+window.addEventListener('resize', function() {
+  windowOptions = getWindowOptions();
+  let windows = document.getElementsByClassName('winbox')
+  if (windows) {
+    Array.from(windows).forEach((window) => {
+      window.remove();
+    });
+  }
+}, true);
+
 about.addEventListener('click', () => {
+  if(document.getElementById('about-window')){
+    document.getElementById('about-window').remove()
+  }
   const aboutBox = new WinBox({
+    id: "about-window",
     title: 'About Me',
     modal: windowOptions.modal,
-    x: windowOptions.x,
-    // y: "top",
-    width: windowOptions.aboutWidth,
-    height: windowOptions.aboutHeight,
+    x: windowOptions.aboutX,
+    y: windowOptions.aboutY,
+    width: windowOptions.aboutWidth + 'px',
+    height: windowOptions.aboutHeight + 'px',
     top: windowOptions.top,
     right: windowOptions.right,
     bottom: windowOptions.bottom,
@@ -59,20 +76,21 @@ about.addEventListener('click', () => {
     onblur: function () {
       this.g.style.opacity="0.75"
     },
-    onhide: function () {
-      this.body.remove()
-    },
   })
 });
 
 contact.addEventListener('click', () => {
+  if(document.getElementById('contact-window')){
+    document.getElementById('contact-window').remove()
+  }
   const contactBox = new WinBox({
+    id: "contact-window",
     title: 'Contact Me',
     modal: windowOptions.modal,
-    width: windowOptions.contactWidth,
-    height: windowOptions.contactHeight,
-    x: windowOptions.x,
-    y: windowOptions.y,
+    width: windowOptions.contactWidth + 'px',
+    height: windowOptions.contactHeight + 'px',
+    x: windowOptions.contactX,
+    y: windowOptions.contactY,
     top: windowOptions.top,
     right: windowOptions.right,
     bottom: windowOptions.bottom,
@@ -267,18 +285,14 @@ const asciis = [[
   "       \\___)  \\___)  \\___)  "
    ]];
   
-  AsciiMorph.render(asciisTrue[0]);
-  
-  let currentIndex = 1;
   
   setTimeout(function() {
-    AsciiMorph.morph(asciisTrue[2]);
-  }, 1000);
-  
+    AsciiMorph.morph(asciisTrue[0]);
+  }, 500);
+
+  let currentIndex = 1;
   setInterval(function() {
     AsciiMorph.morph(asciisTrue[currentIndex]);
     currentIndex++;
     currentIndex%= asciisTrue.length;
   }, 3000);
-
- 
