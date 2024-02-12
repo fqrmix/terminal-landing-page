@@ -96,6 +96,11 @@ nav ul li {
   border-bottom-right-radius: 6px;
 }
 
+.wb-body div {
+  padding: 20px !important;
+}
+
+
 .wb-header {
   align-content: center;
   display: flex;
@@ -135,21 +140,19 @@ nav ul li {
 }
 
 .wb-max {
-  background: #ffbd4c;
-  border: 1px solid #e09e3e;
-  border-radius: 50%;
-  order: 2;
-  
-}
-
-.wb-min {
   background: #00ca56;
   border: 1px solid #14ae46;
   border-radius: 50%;
   order: 3;
+  
 }
 
-
+.wb-min {
+  background: #ffbd4c;
+  border: 1px solid #e09e3e;
+  border-radius: 50%;
+  order: 2;
+}
 
 .wb-full {
   display: none;
@@ -157,7 +160,6 @@ nav ul li {
 
 .wb-body {
   background: #32302f;
-  padding: 20px;
 }
 
 .hidden {
@@ -208,10 +210,15 @@ nav ul li {
     align-items: center;
   }
 
+  .main {
+    flex-direction: column;
+  }
+
   .ascii-art {
     position: fixed;
     z-index: -999;
     opacity: 0.4;
+    scale: 0.5;
     margin: 0;
     display: flex;
     justify-content: center;
@@ -221,12 +228,13 @@ nav ul li {
 
   .ascii-element {
     margin: 0;
-    margin-top: auto;
+    margin-top: 285px;
   }
 
   .container {
-    width: 600px;
     margin-top: 60px;
+    margin-bottom: 0;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
